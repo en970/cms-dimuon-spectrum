@@ -1,6 +1,7 @@
 # Rediscovering Known Resonances in Real CMS Collision Data
 
 **Live report:** https://en970.github.io/cms-dimuon-spectrum/
+**PDF (LaTeX, 6 pp):** [`reports/cms-dimuon-spectrum-report.pdf`](reports/cms-dimuon-spectrum-report.pdf)
 
 **One line:** stream real 2012 CMS proton-proton collision data from the CERN Open Data Portal,
 compute the dimuon invariant-mass spectrum across all 61.5 million events, and recover eight
