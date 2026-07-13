@@ -1,0 +1,66 @@
+[
+  {
+    "name": "rho/omega",
+    "pdg_mass_GeV": 0.775,
+    "measured_mass_GeV": 0.78128,
+    "residual_GeV": 0.00628,
+    "residual_pct": 0.81,
+    "peak_bin_count": 20218
+  },
+  {
+    "name": "phi",
+    "pdg_mass_GeV": 1.019,
+    "measured_mass_GeV": 1.01659,
+    "residual_GeV": -0.00241,
+    "residual_pct": -0.236,
+    "peak_bin_count": 25453
+  },
+  {
+    "name": "J/psi",
+    "pdg_mass_GeV": 3.097,
+    "measured_mass_GeV": 3.0938,
+    "residual_GeV": -0.0032,
+    "residual_pct": -0.103,
+    "peak_bin_count": 401048
+  },
+  {
+    "name": "psi(2S)",
+    "pdg_mass_GeV": 3.686,
+    "measured_mass_GeV": 3.68103,
+    "residual_GeV": -0.00497,
+    "residual_pct": -0.135,
+    "peak_bin_count": 28059
+  },
+  {
+    "name": "Upsilon(1S)",
+    "pdg_mass_GeV": 9.46,
+    "measured_mass_GeV": 9.45194,
+    "residual_GeV": -0.00806,
+    "residual_pct": -0.085,
+    "peak_bin_count": 49345
+  },
+  {
+    "name": "Upsilon(2S)",
+    "pdg_mass_GeV": 10.023,
+    "measured_mass_GeV": 10.01442,
+    "residual_GeV": -0.00858,
+    "residual_pct": -0.086,
+    "peak_bin_count": 29813
+  },
+  {
+    "name": "Upsilon(3S)",
+    "pdg_mass_GeV": 10.355,
+    "measured_mass_GeV": 10.33695,
+    "residual_GeV": -0.01805,
+    "residual_pct": -0.174,
+    "peak_bin_count": 25164
+  },
+  {
+    "name": "Z",
+    "pdg_mass_GeV": 91.19,
+    "measured_mass_GeV": 90.92167,
+    "residual_GeV": -0.26833,
+    "residual_pct": -0.294,
+    "peak_bin_count": 285636
+  }
+]

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rediscovering Known Resonances in Real CMS Collision Data</title>
+<meta name="description" content="The dimuon invariant-mass spectrum computed from all 61.5 million events of the real CMS 2012 DoubleMuParked dataset recovers eight known resonances to sub-percent mass accuracy against PDG values.">
+<meta name="keywords" content="CMS, CERN Open Data, dimuon spectrum, J/psi, Upsilon, Z boson, particle physics, uproot, awkward, LHC, DESY">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rediscovering Known Resonances in Real CMS Collision Data">
+<meta property="og:description" content="61.5 million real LHC collision events, streamed from the CERN Open Data Portal, reproduce the classic dimuon spectrum to sub-percent accuracy.">
+<meta property="og:url" content="https://en970.github.io/cms-dimuon-spectrum/">
+<meta property="og:image" content="https://en970.github.io/cms-dimuon-spectrum/assets/dimuon_spectrum.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://en970.github.io/cms-dimuon-spectrum/">
+<script>
+  MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] },
+              svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+  :root{--ink:#161616;--muted:#5b5b5b;--rule:#d7d7d2;--bg:#fbfbf8;--panel:#f4f4ee;--link:#7a1f2d;}
+  @media (prefers-color-scheme:dark){:root{--ink:#e7e7e2;--muted:#a6a69f;--rule:#33342f;--bg:#131412;--panel:#1c1d1a;--link:#e0a3ab;}}
+  *{box-sizing:border-box} html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Iowan Old Style","Times New Roman",serif;font-size:18px;line-height:1.62;text-rendering:optimizeLegibility}
+  .wrap{max-width:820px;margin:0 auto;padding:64px 26px 96px}
+  header.paper{border-bottom:1px solid var(--rule);padding-bottom:26px;margin-bottom:34px}
+  .eyebrow{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  h1{font-size:28px;line-height:1.22;margin:0 0 14px;font-weight:600;letter-spacing:-.01em}
+  .byline{color:var(--muted);font-size:16px;margin:0}.byline b{color:var(--ink);font-weight:600}
+  .meta{color:var(--muted);font-size:14.5px;margin:10px 0 0;font-family:ui-monospace,Menlo,monospace}
+  h2{font-size:21px;margin:44px 0 10px;font-weight:600} h3{font-size:17.5px;margin:26px 0 6px;font-weight:600}
+  p{margin:0 0 14px} a{color:var(--link);text-decoration:none;border-bottom:1px solid rgba(122,31,45,.3)} a:hover{border-bottom-color:currentColor} sup a{border:none;font-size:.72em;padding:0 1px}
+  .abstract{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:20px 22px;margin:8px 0}
+  .abstract p{margin:0;font-size:16.5px} .abstract .lab{font-family:ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px}
+  figure{margin:26px 0;text-align:center} figure img{max-width:100%;height:auto;border:1px solid var(--rule);border-radius:3px;background:#fff}
+  figcaption{font-size:14.5px;color:var(--muted);margin-top:10px;text-align:left;line-height:1.5}figcaption b{color:var(--ink);font-weight:600}
+  table{border-collapse:collapse;width:100%;margin:20px 0;font-size:14.5px} th,td{border:1px solid var(--rule);padding:7px 11px;text-align:left} th{background:var(--panel);font-weight:600}
+  code,.mono{font-family:ui-monospace,Menlo,monospace;font-size:.86em;background:var(--panel);padding:1px 5px;border-radius:3px}
+  pre{background:var(--panel);border:1px solid var(--rule);border-radius:4px;padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5} pre code{background:none;padding:0}
+  .refs{font-size:15px;line-height:1.55} .refs ol{padding-left:26px} .refs li{margin:0 0 10px}
+  .note{font-size:14.5px;color:var(--muted);font-style:italic}
+  hr.sec{border:none;border-top:1px solid var(--rule);margin:40px 0}
+  .kpis{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}
+  .kpi{flex:1 1 150px;border:1px solid var(--rule);border-radius:4px;padding:12px 14px;background:var(--panel)}
+  .kpi .n{font-size:22px;font-weight:600;letter-spacing:-.01em} .kpi .l{font-size:12.5px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+  footer{border-top:1px solid var(--rule);margin-top:52px;padding-top:22px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="paper">
+  <p class="eyebrow">CMS Open Data · Technical report</p>
+  <h1>Rediscovering Known Resonances in Real CMS Collision Data</h1>
+  <p class="byline"><b>Enes</b> &nbsp;·&nbsp; Independent research project</p>
+  <p class="meta">Draft — July 2026 · Code and data: <span class="mono">github.com/en970/cms-dimuon-spectrum</span></p>
+</header>
+
+<div class="abstract">
+  <span class="lab">Abstract</span>
+  <p>We compute the dimuon invariant-mass spectrum from the full CMS 2012 <span class="mono">DoubleMuParked</span>
+  dataset (Run2012B+C, 8 TeV proton-proton collisions) released on the CERN Open Data Portal —
+  real detector data, not simulation. Streaming all <b>61,540,413</b> events over HTTP with the
+  Scikit-HEP stack (<span class="mono">uproot</span>, <span class="mono">awkward</span>,
+  <span class="mono">vector</span>), we select opposite-charge muon pairs and histogram their
+  invariant mass on a logarithmic scale, recovering <b>39,047,770</b> dimuon pairs. The resulting
+  spectrum shows eight resonance peaks — the $\rho/\omega$, $\phi$, $J/\psi$, $\psi(2S)$, the
+  $\Upsilon(1S,2S,3S)$ triplet, and the $Z$ boson — each located to <b>better than 1% mass
+  accuracy</b> against Particle Data Group values, with no calibration corrections applied. This
+  is a direct, independent reproduction of a classic CERN Open Data analysis, using real 2012 LHC
+  collision data and the same open-source tooling used by CMS collaborators (including DESY, one
+  of CMS's largest member institutes).</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>When two protons collide at high energy, most of the resulting particles decay before
+reaching a detector. Some of the intermediate states — bound quark-antiquark pairs such as the
+$J/\psi$ ($c\bar{c}$) and the $\Upsilon$ family ($b\bar{b}$), light mesons such as the $\rho$,
+$\omega$, and $\phi$, and heavy gauge bosons such as the $Z$ — occasionally decay to a
+muon-antimuon pair. Because each of these states has a fixed, known rest mass, the invariant mass
+of every muon pair reconstructed in a detector clusters at these values, producing sharp peaks
+above a smooth combinatorial background of unrelated muon pairs. Histogramming this quantity
+across a large collision dataset — the <em>dimuon spectrum</em> — is one of the most direct,
+least model-dependent ways to see fundamental particle physics in real data, and is a standard
+first analysis exercise on CERN Open Data.</p>
+
+<h2>2. Data</h2>
+<p>The source is the CMS <b>2012 DoubleMuParked</b> dataset (Run2012B+C, $\sqrt{s}=8$ TeV),
+released via the CERN Open Data Portal <sup><a href="#r1">[1]</a></sup> as a pre-skimmed
+NanoAOD-Outreach-Tool ROOT file — the same file used in ROOT's official
+<span class="mono">df102_NanoAODDimuonAnalysis</span> tutorial <sup><a href="#r2">[2]</a></sup>:</p>
+<pre><code>https://opendata.cern.ch/eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/
+    Run2012BC_DoubleMuParked_Muons.root</code></pre>
+<p>The file contains <b>61,540,413</b> real collision events (2.24 GB), each with per-event arrays
+of reconstructed muon $p_T$, $\eta$, $\phi$, mass, and charge. The file is streamed directly over
+HTTP with <span class="mono">uproot</span> <sup><a href="#r5">[5]</a></sup> in bounded entry
+ranges; it is never downloaded or persisted — only the derived histogram (tens of kilobytes) and
+a small event sample are kept. Data are public domain (CC0).</p>
+
+<h2>3. Methods</h2>
+<p>For every event with two or more reconstructed muons, the first two muon candidates as stored
+are taken, opposite electric charge is required ($q_1 q_2 < 0$), and the invariant mass of the
+dimuon system is computed by four-momentum (Lorentz-vector) addition,</p>
+$$M_{\mu\mu} = \sqrt{(E_1+E_2)^2 - |\vec{p}_1+\vec{p}_2|^2},$$
+<p>using the <span class="mono">vector</span> library's <span class="mono">Momentum4D</span>
+behaviour on Awkward Arrays <sup><a href="#r6">[6]</a><a href="#r7">[7]</a></sup> — each muon's
+$(p_T,\eta,\phi,m)$ is converted to a four-vector and the addition and mass extraction are
+vectorised across every event in a chunk simultaneously. Masses are accumulated into a
+2000-bin logarithmic histogram spanning $0.2$–$200$ GeV across the full dataset.</p>
+
+<h3>3.1 A resilient streaming pipeline</h3>
+<p>Reading the whole file in a single high-level <span class="mono">iterate()</span> call failed
+with a transport-layer error before completing even the first chunk of the remote HTTP stream.
+The working pipeline instead:</p>
+<ul>
+  <li>reads <b>small, explicit entry ranges</b> (300,000 events) via
+    <span class="mono">TTree.arrays(entry_start, entry_stop)</span>;</li>
+  <li><b>retries</b> a failed range up to 6 times with backoff and a fresh connection;</li>
+  <li><b>checkpoints</b> the running histogram to disk after every chunk, and <b>resumes</b> from
+    the last checkpoint on restart.</li>
+</ul>
+<p>In practice the background process was interrupted by the execution environment's time limits
+several times over the course of processing; each restart resumed automatically from the last
+checkpoint with no data loss, until the full file was processed.</p>
+
+<h3>3.2 Peak-position validation</h3>
+<p>For each expected resonance, the peak bin within a small window around its literature mass is
+located, and refined by parabolic interpolation using the peak bin and its two neighbours
+$(x_0,y_0),(x_1,y_1),(x_2,y_2)$:</p>
+$$m_{\text{meas}} = x_1 + \frac{1}{2}\cdot\frac{y_0-y_2}{y_0-2y_1+y_2}\cdot\frac{x_2-x_0}{2}.$$
+<p>This sub-bin estimate is compared to the corresponding Particle Data Group (PDG) mass
+<sup><a href="#r4">[4]</a></sup>.</p>
+
+<h2>4. Results</h2>
+<div class="kpis">
+  <div class="kpi"><div class="n">61.5M</div><div class="l">events processed</div></div>
+  <div class="kpi"><div class="n">39.0M</div><div class="l">dimuon pairs</div></div>
+  <div class="kpi"><div class="n">100%</div><div class="l">file coverage</div></div>
+  <div class="kpi"><div class="n">&lt;1%</div><div class="l">peak mass accuracy</div></div>
+</div>
+
+<figure>
+  <img src="assets/dimuon_spectrum.png" alt="Dimuon invariant mass spectrum from real CMS 2012 data">
+  <figcaption><b>Figure 1.</b> The dimuon invariant-mass spectrum from all 61.5 million events of
+  the CMS 2012 DoubleMuParked dataset (39,047,770 opposite-charge pairs). Eight resonances are
+  visible above the smooth combinatorial background: the light mesons $\rho/\omega$ and $\phi$
+  below 1.1 GeV; the charmonium states $J/\psi$ and $\psi(2S)$ near 3.1–3.7 GeV; the bottomonium
+  triplet $\Upsilon(1S,2S,3S)$ near 9.5–10.4 GeV, now clearly resolved as three separate peaks at
+  full statistics; and the $Z$ boson at 91.2 GeV.</figcaption>
+</figure>
+
+<h3>4.1 Quantitative peak validation</h3>
+<table>
+  <tr><th>Resonance</th><th>PDG mass (GeV)</th><th>Measured (GeV)</th><th>Residual</th><th>Residual (%)</th></tr>
+  <tr><td>$\rho/\omega$</td><td>0.775</td><td>0.7813</td><td>+0.0063</td><td>+0.81%</td></tr>
+  <tr><td>$\phi$</td><td>1.019</td><td>1.0166</td><td>-0.0024</td><td>-0.24%</td></tr>
+  <tr><td>$J/\psi$</td><td>3.097</td><td>3.0938</td><td>-0.0032</td><td>-0.10%</td></tr>
+  <tr><td>$\psi(2S)$</td><td>3.686</td><td>3.6810</td><td>-0.0050</td><td>-0.13%</td></tr>
+  <tr><td>$\Upsilon(1S)$</td><td>9.460</td><td>9.4519</td><td>-0.0081</td><td>-0.09%</td></tr>
+  <tr><td>$\Upsilon(2S)$</td><td>10.023</td><td>10.0144</td><td>-0.0086</td><td>-0.09%</td></tr>
+  <tr><td>$\Upsilon(3S)$</td><td>10.355</td><td>10.3370</td><td>-0.0180</td><td>-0.17%</td></tr>
+  <tr><td>$Z$</td><td>91.190</td><td>90.9217</td><td>-0.2683</td><td>-0.29%</td></tr>
+</table>
+<p>All eight resonances are recovered to <b>better than 1% mass accuracy</b> with no muon
+momentum-scale calibration applied — strong quantitative confirmation that the spectrum reflects
+genuine physics rather than an artefact of the selection or binning.</p>
+
+<h2>5. Discussion and limitations</h2>
+<ul>
+  <li><b>No momentum-scale calibration.</b> Production CMS analyses apply per-event muon momentum
+    corrections ("Rochester corrections") to remove small residual detector-alignment biases.
+    This likely explains why the $Z$ peak — most sensitive to the high-$p_T$ momentum scale —
+    shows the largest residual (-0.29%); the uncorrected agreement is nonetheless sub-percent.</li>
+  <li><b>"First two muons" is a simplification.</b> A production analysis selects the
+    highest-quality opposite-charge pair (typically the two highest-$p_T$ muons passing
+    identification and isolation criteria); this reproduction uses the muons in file order.</li>
+  <li><b>Educational/derived data.</b> The NanoAOD Outreach Tool format is a simplified derivative
+    of the full research-grade AOD/MiniAOD used in an actual CMS publication.</li>
+</ul>
+
+<h2>6. Reproducibility</h2>
+<pre><code>python3 src/dimuon_spectrum.py     # streams the full file; resumable via a checkpoint
+python3 src/analyze_peaks.py       # quantitative peak-position validation against PDG values</code></pre>
+<p class="note">Requires <span class="mono">uproot</span>, <span class="mono">awkward</span>,
+<span class="mono">vector</span>, <span class="mono">numpy</span>,
+<span class="mono">matplotlib</span> (the Scikit-HEP stack). Outputs:
+<span class="mono">outputs/dimuon_spectrum.png</span>,
+<span class="mono">outputs/run_summary.json</span>,
+<span class="mono">outputs/peak_validation.json</span>.</p>
+
+<hr class="sec">
+<h2 id="refs">References</h2>
+<div class="refs">
+<ol>
+  <li id="r1">CERN Open Data Portal — CMS 2012 DoubleMuParked dataset.
+    <a href="https://opendata.cern.ch/record/17">opendata.cern.ch/record/17</a> ·
+    <a href="https://opendata.cern.ch/">opendata.cern.ch</a>.</li>
+  <li id="r2">ROOT Collaboration. <em>df102_NanoAODDimuonAnalysis</em> tutorial (the reference
+    analysis this project reproduces independently).
+    <a href="https://root.cern/doc/master/df102__NanoAODDimuonAnalysis_8py.html">root.cern/doc/master/df102__NanoAODDimuonAnalysis_8py.html</a>.</li>
+  <li id="r3">CMS Collaboration (2024). <em>CMS 2012 data release notes.</em>
+    <a href="https://opendata.cern.ch/docs/cms-releases-2016data-2024">opendata.cern.ch/docs/cms-releases-2016data-2024</a>.</li>
+  <li id="r4">Particle Data Group, S.&nbsp;Navas et&nbsp;al. (2024). <em>Review of Particle Physics.</em>
+    Phys. Rev. D 110, 030001. <a href="https://pdg.lbl.gov/">pdg.lbl.gov</a>.</li>
+  <li id="r5">Pivarski, J., et&nbsp;al. <em>uproot: ROOT I/O in pure Python and NumPy.</em>
+    <a href="https://github.com/scikit-hep/uproot5">github.com/scikit-hep/uproot5</a>.</li>
+  <li id="r6">Pivarski, J., et&nbsp;al. <em>Awkward Array: manipulating JSON-like data with NumPy-like idioms.</em>
+    <a href="https://github.com/scikit-hep/awkward">github.com/scikit-hep/awkward</a>.</li>
+  <li id="r7">Rembser, J., et&nbsp;al. <em>vector: Lorentz-vector library for Python.</em>
+    <a href="https://github.com/scikit-hep/vector">github.com/scikit-hep/vector</a>.</li>
+  <li id="r8">Rodrigues, E., et&nbsp;al. (2020). <em>The Scikit-HEP Project.</em>
+    EPJ Web Conf. 245, 06028. <a href="https://doi.org/10.1051/epjconf/202024506028">doi:10.1051/epjconf/202024506028</a>.</li>
+</ol>
+</div>
+
+<footer>
+  CMS Open Data project · Independent research project. Data courtesy of the CMS
+  Collaboration and the CERN Open Data Portal. This report presents a reproducible analysis of
+  public detector data; it does not constitute an official CMS result.
+</footer>
+
+</div>
+</body>
+</html>

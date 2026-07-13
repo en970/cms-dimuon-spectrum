@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS
+.DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+
+# Secrets
+.ghtoken
+*.token
+.env
+
+# Large regenerable artifacts (checkpoint duplicates the final histogram)
+histogram_checkpoint.npz
+progress.json

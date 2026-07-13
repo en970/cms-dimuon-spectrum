@@ -1,0 +1,52 @@
+{
+  "source": "CMS 2012 DoubleMuParked (Run2012B+C, 8 TeV), CERN Open Data Portal",
+  "url": "https://opendata.cern.ch/eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root:Events",
+  "n_events_total_in_file": 61540413,
+  "n_events_processed": 61540413,
+  "coverage_fraction": 1.0,
+  "n_opposite_charge_dimuon_pairs": 39047770,
+  "runtime_seconds": 5571.5,
+  "mass_range_GeV": [
+    0.2,
+    200.0
+  ],
+  "n_bins": 2000,
+  "resonances_expected_GeV": [
+    [
+      "eta",
+      0.548
+    ],
+    [
+      "rho/omega",
+      0.775
+    ],
+    [
+      "phi",
+      1.019
+    ],
+    [
+      "J/psi",
+      3.097
+    ],
+    [
+      "psi(2S)",
+      3.686
+    ],
+    [
+      "Upsilon(1S)",
+      9.46
+    ],
+    [
+      "Upsilon(2S)",
+      10.023
+    ],
+    [
+      "Upsilon(3S)",
+      10.355
+    ],
+    [
+      "Z",
+      91.19
+    ]
+  ]
+}
